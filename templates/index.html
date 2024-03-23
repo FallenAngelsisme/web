@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁</title>
+    <style>
+        body {
+            
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1625777719130-0a8e07086117?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'); /* 背景图片 */
+            background-size: cover; /* 让背景图片铺满整个页面 */
+            background-position: center; /* 将背景图片居中 */
+        }
+        #text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #button-container {
+            display: flex;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4cafac;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .loading{
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+
+
+        .la-ball-scale-pulse,
+        .la-ball-scale-pulse > div {
+            position: relative;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
+       
+        .la-ball-scale-pulse {
+            display: block;
+            font-size: 0;
+            color: #d61515;
+        }
+        .la-ball-scale-pulse.la-dark {
+            color: #aa1515;
+        }
+        .la-ball-scale-pulse > div {
+            display: inline-block;
+            float: none;
+            background-color: currentColor;
+            border: 0 solid currentColor;
+        }
+        .la-ball-scale-pulse {
+            width: 32px;
+            height: 32px;
+        }
+        .la-ball-scale-pulse > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            opacity: .5;
+            -webkit-animation: ball-scale-pulse 2s infinite ease-in-out;
+            -moz-animation: ball-scale-pulse 2s infinite ease-in-out;
+                -o-animation: ball-scale-pulse 2s infinite ease-in-out;
+                    animation: ball-scale-pulse 2s infinite ease-in-out;
+        }
+        .la-ball-scale-pulse > div:last-child {
+            -webkit-animation-delay: -1.0s;
+            -moz-animation-delay: -1.0s;
+                -o-animation-delay: -1.0s;
+                    animation-delay: -1.0s;
+        }
+        .la-ball-scale-pulse.la-sm {
+            width: 16px;
+            height: 16px;
+        }
+        .la-ball-scale-pulse.la-sm > div {
+            width: 16px;
+            height: 16px;
+        }
+        .la-ball-scale-pulse.la-2x {
+            width: 64px;
+            height: 64px;
+        }
+        .la-ball-scale-pulse.la-2x > div {
+            width: 64px;
+            height: 64px;
+        }
+        .la-ball-scale-pulse.la-3x {
+            width: 96px;
+            height: 96px;
+        }
+        .la-ball-scale-pulse.la-3x > div {
+            width: 96px;
+            height: 96px;
+        }
+        
+        @-webkit-keyframes ball-scale-pulse {
+            0%,
+            100% {
+                -webkit-transform: scale(0);
+                        transform: scale(0);
+            }
+            50% {
+                -webkit-transform: scale(1);
+                        transform: scale(1);
+            }
+        }
+        @-moz-keyframes ball-scale-pulse {
+            0%,
+            100% {
+                -moz-transform: scale(0);
+                    transform: scale(0);
+            }
+            50% {
+                -moz-transform: scale(1);
+                    transform: scale(1);
+            }
+        }
+        @-o-keyframes ball-scale-pulse {
+            0%,
+            100% {
+                -o-transform: scale(0);
+                transform: scale(0);
+            }
+            50% {
+                -o-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+        @keyframes ball-scale-pulse {
+            0%,
+            100% {
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                    -o-transform: scale(0);
+                        transform: scale(0);
+            }
+            50% {
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                    -o-transform: scale(1);
+                        transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <div class=" la-ball-scale-pulse la-3x">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div id="text">Starting a new game...</div>
+    <div id="button-container">
+        <button class="button" onclick="redirectToEnglish_Test()">英文單字測驗</button>
+        <button class="button" onclick="redirectToGame()">字首字尾測試</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function redirectToEnglish_Test() {
+            var score = 0;
+            window.location.href = "/English_Test?score=" + score;
+        }
+
+        function redirectToGame() {
+            var score = 0;
+            window.location.href = "/choosetopic?score=" + score;; 
+            }
+        $(document).ready(function(){
+            setTimeout(function(){
+                $(".loading").fadeOut(500);
+            },2000);
+
+        })
+        
+    </script>
+    
+</body>
+</html>

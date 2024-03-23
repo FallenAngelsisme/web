@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>選擇主題</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1625777719130-0a8e07086117?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'); /* 背景图片 */
+            background-size: cover; /* 让背景图片铺满整个页面 */
+            background-position: center; /* 将背景图片居中 */
+        }
+        #text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #button-container {
+            display: flex;
+            position: relative; /* 添加此行 */
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4cafac;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            position: relative; /* 添加此行 */
+            z-index: 1; /* 添加此行 */
+        }
+        .loading{
+            display: flex; /* 设置为flex布局 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            position: fixed; /* 使用fixed定位 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+            z-index: 9999;
+        }
+        .la-ball-scale-pulse,
+        .la-ball-scale-pulse > div {
+            position: relative;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
+        .la-ball-scale-pulse {
+            display: block;
+            font-size: 0;
+            color: #d61515;
+        }
+        .la-ball-scale-pulse.la-dark {
+            color: #aa1515;
+        }
+        .la-ball-scale-pulse > div {
+            display: inline-block;
+            float: none;
+            background-color: currentColor;
+            border: 0 solid currentColor;
+        }
+        .la-ball-scale-pulse {
+            width: 32px;
+            height: 32px;
+        }
+        .la-ball-scale-pulse > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            opacity: .5;
+            -webkit-animation: ball-scale-pulse 2s infinite ease-in-out;
+            -moz-animation: ball-scale-pulse 2s infinite ease-in-out;
+                -o-animation: ball-scale-pulse 2s infinite ease-in-out;
+                    animation: ball-scale-pulse 2s infinite ease-in-out;
+        }
+        .la-ball-scale-pulse > div:last-child {
+            -webkit-animation-delay: -1.0s;
+            -moz-animation-delay: -1.0s;
+                -o-animation-delay: -1.0s;
+                    animation-delay: -1.0s;
+        }
+        .la-ball-scale-pulse.la-sm {
+            width: 16px;
+            height: 16px;
+        }
+        .la-ball-scale-pulse.la-sm > div {
+            width: 16px;
+            height: 16px;
+        }
+        .la-ball-scale-pulse.la-2x {
+            width: 64px;
+            height: 64px;
+        }
+        .la-ball-scale-pulse.la-2x > div {
+            width: 64px;
+            height: 64px;
+        }
+        .la-ball-scale-pulse.la-3x {
+            width: 96px;
+            height: 96px;
+        }
+        .la-ball-scale-pulse.la-3x > div {
+            width: 96px;
+            height: 96px;
+        }
+        /*
+        * Animation
+        */
+        @-webkit-keyframes ball-scale-pulse {
+            0%,
+            100% {
+                -webkit-transform: scale(0);
+                        transform: scale(0);
+            }
+            50% {
+                -webkit-transform: scale(1);
+                        transform: scale(1);
+            }
+        }
+        @-moz-keyframes ball-scale-pulse {
+            0%,
+            100% {
+                -moz-transform: scale(0);
+                    transform: scale(0);
+            }
+            50% {
+                -moz-transform: scale(1);
+                    transform: scale(1);
+            }
+        }
+        @-o-keyframes ball-scale-pulse {
+            0%,
+            100% {
+                -o-transform: scale(0);
+                transform: scale(0);
+            }
+            50% {
+                -o-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+        @keyframes ball-scale-pulse {
+            0%,
+            100% {
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                    -o-transform: scale(0);
+                        transform: scale(0);
+            }
+            50% {
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                    -o-transform: scale(1);
+                        transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <div class="loading">
+            <div class=" la-ball-scale-pulse la-3x">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </body>
+    <div id="text">Choose</div>
+    <div id="button-container">
+        <button onclick="submitData('numbertest')" class="button">數字</button>
+        <button onclick="submitData('directiontest')" class="button">方向</button>
+        <button onclick="submitData('否定')" class="button">否定</button>
+        <button onclick="submitData('其他常用字首')" class="button">其他</button>
+        <button onclick="submitData('與人有關的字尾')" class="button">與人有關</button>
+        <button onclick="submitData('名詞結尾')" class="button">名詞結尾</button>
+        <button onclick="submitData('動詞結尾')" class="button">動詞結尾</button>
+        <button onclick="submitData('形容詞')" class="button">形容詞結尾</button>
+        <button onclick="submitData('副詞結尾')" class="button">副詞結尾</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){
+                $(".loading").fadeOut(500);
+            },2000);
+
+        })
+        function submitData(data) {
+            var urlParams = new URLSearchParams(window.location.search);
+            var score = parseInt(urlParams.get('score'));
+            $.ajax({
+                url: "/choosetopic",
+                method: "POST",
+                data: {
+                    data: data,
+                    score: score 
+                },
+                success: function(response) {
+                    window.location.href = "/Game?score=" + score;
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
