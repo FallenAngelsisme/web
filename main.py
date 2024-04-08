@@ -97,9 +97,9 @@ def English_Test():
         if example:
             English_example = example.text
         else:
-            print("No example found for the word.")
+            English_example="No definition found for the word."
     else:
-        print("No definition found for the word.")
+        English_example="No definition found for the word."
     return render_template('English_Test.html', a=a, b=b, c=c, d=d, Ques=Ques, An=An, Score=Score)
 
     
