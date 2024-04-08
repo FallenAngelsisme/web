@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correct Page</title>
+    <style>
+        /* Bodoni+Moda */
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,900;1,6..96,900&family=Caveat:wght@400..700&family=Inter:wght@100..900&display=swap');
+        /* Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,900;1,6..96,900&family=Caveat:wght@400..700&family=Inter:wght@100..900&display=swap');
+        /* Caveat */
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,900;1,6..96,900&family=Caveat:wght@400..700&family=Inter:wght@100..900&display=swap');
+        /* Libre+Bodoni */
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&display=swap');
+        body {
+            font-family: "Inter","Caveat","Bodoni Moda","Libre Bodoni",Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* 垂直居中 */
+            background-image: url('https://images.unsplash.com/photo-1625777719130-0a8e07086117?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'); /* 背景图片 */
+            background-size: cover; /* 让背景图片铺满整个页面 */
+            background-position: center; /* 将背景图片居中 */
+        }
+        #correct-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        #correct-message {
+            font-family:"Libre Bodoni";
+            letter-spacing: 3px;
+            font-size: 36px;
+            font-weight: bold;
+            color: #3B3B3B;
+            
+        }
+        #button-container {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        .button {
+            font-family:"Inter";
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #d8d4cd;
+            color: #3B3B3B;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .score-container {
+            position: absolute;
+            height: 18px;
+            top: 10px;
+            right: 10px;
+            background-color: #d8d4cd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .score {
+            font-family:"Inter";
+            font-weight: bold;
+            margin: 0;
+            color: #3B3B3B;
+            font-size: 18px;
+        }
+        .box {
+            padding: 20px;
+            font-family:"Libre Bodoni";
+            line-height:40px;
+            font-size: 20px;
+            margin: 0;
+            background-color: rgba(142, 168, 198, 0.555);
+            color: #3B3B3B;
+            border-radius: 10px;
+            margin-top: 20px; /* 上方 Correct! 文本与方框的间距 */
+            height: 150px;
+            width: 1000px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 从 URL 中获取传递的分数参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var score = parseInt(urlParams.get('score'));
+
+        // 将分数显示在页面上
+        document.getElementById("score").innerText = score;
+
+    </script>
+    
+    
+    <div id="correct-message">Correct!</div>
+    
+    <div id="correct-container">
+        <div class="box">{{English_example}}</div>
+    </div>
+    <div id="button-container">
+        <button class="button" onclick="redirectToHomePage()">Home</button>
+        <button class="button" onclick="redirectToNext()">Next</button>
+    </div>
+    <div class="score-container">
+        <p class="score">Score: <span id="current-score">0</span></p>
+    </div>
+
+    <script>
+        // 从 URL 中获取传递的分数参数
+        var urlParams = new URLSearchParams(window.location.search);
+        var score = parseInt(urlParams.get('score'));
+        
+        // 将分数显示在页面上
+        document.getElementById("current-score").innerText = score;
+        
+        function redirectToHomePage() {
+            window.location.href = "/"; // 修改为你希望重定向的首页路径
+        }
+
+        function redirectToNext() {
+            // 將分數作為參數傳遞到第四頁
+            var nextPageUrl = "/English_Test?score=" + score;
+            window.location.href = nextPageUrl;
+            
+        }
+    </script>
+</body>
+</html>
